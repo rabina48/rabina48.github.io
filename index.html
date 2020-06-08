@@ -1,72 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>My Protfolio</title>
-  </head>
-  <body> 
-
-    <div id="loading">
-        loading....
-         
-    </div>
-     <div class="main" id="mainContainer" hidden>
-    
-
-      <img    
-              src ="https://avatars0.githubusercontent.com/u/45580944?s=460&u=5a4ca7a217baa9fe2374078ad8370185f894481d&v=4"
-    
-               height="100"
-               width="100"
-              id="profileImage"
-      >
-
-                      <h2 id="fullname"></h2>
-                      <p id="bio"></p>
-                      <h5 id="followersInformation"></h5>
-                    
-
-                      <p>
-                        Check me on <a id ="githublink">GITHUB</a>
-                                      
-                        </p>
-                        <a href="https://twitter.com/rabinas48?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @rabinas48</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-    </div>
-                     <html href="https://github.com/rabina48" <class="social-item"><span class="icon-twitter"></span>Github</class="social-item"><body> 
-
-                  
-                    <body href="/rabina-s/>" class="social-item"><span class="icon-linkedin2"></span>linkedin</body>
-                    
-            
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <!-- google font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Public+Sans:300,500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
+    />
+    <script
+      type="text/javascript"
+      language="javascript"
+      src="https://code.jquery.com/jquery-3.5.1.js"
+    ></script>
+    <script
+      type="text/javascript"
+      language="javascript"
+      src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"
+    ></script>
     <script>
-        
-        fetch("https://api.github.com/users/rabina48")
-        .then(response => response.json())
-        .then(function(data)
-        {
-            console.log(data)
+      $(document).ready(function () {
+        var baseurl = "https://api.github.com/users/rabina48/repos";
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", baseurl, true);
+        xmlhttp.onreadystatechange = function () {
+          var persons = JSON.parse(xmlhttp.responseText);
+          $("#example").DataTable({
+            destroy: true,
+            data: persons,
+            columns: [
+              { data: "id" },
+              { data: "name" },
+              { data: "html_url" },
+              { data: "language" },
+              { data: "created_at" },
+            ],
+          });
+        };
+        xmlhttp.send();
+      });
+    </script>
+  </head>
+  <body class="text-center">
+    <div id="loading">
+      loading......
+    </div>
+    <div class="main" id="mainContainer" hidden>
+      <img id="profileImage" height="100" width="100" />
+      <h2 id="FullName"></h2>
+      <p>Check me on <a id="githubLink">Github</a></p>
+      <div class="container-fluid mt-3">
+        <!-- jumbotron -->
+        <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1>Github Repositories</h1>
+          </div>
+        </div>
+        <table id="example" class="display" style="width: 100%;">
+          <thead class="text-center">
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>URL</th>
+              <th>Language</th>
+              <th>Created in Date</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
 
-            let followersCount = data['followers']
-            let followersInfo = `I have been followed by ${followersCount} people on GITHUB`
-
-            document.getElementById('profileImage').src=data['avatar_url']
-            document.getElementById('fullname').textContent=data['name']
-            
-            document.getElementById('bio').textContent=data['bio']
-            document.getElementById('followersInformation').textContent=followersInfo
-
-            document.getElementById('githublink').href = data['html_url']
-            document.getElementById('mainContainer').hidden = false
-            
-            document.getElementById('loading').hidden = true
-
-        })
-      </script>
-      </body>
-      </html>
-
-
-            
-
-    
+    <script>
+      fetch("https://api.github.com/users/rabina48")
+        .then((response) => response.json())
+        .then(function (data) {
+          console.log(data);
+          document.getElementById("profileImage").src = data["avatar_url"];
+          document.getElementById("FullName").src = data["name"];
+          document.getElementById("githubLink").href = data["html_url"];
+          document.getElementById("mainContainer").hidden = false;
+          document.getElementById("loading").hidden = true;
+        });
+    </script>
+  </body>
+</html>
