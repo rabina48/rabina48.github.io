@@ -12,4 +12,4 @@ It is a simple Protfoilo create by using Github API and Using Javascript.
 To learn more about API **GO_TO** :(https://www.youtube.com/watch?v=qVTAB8Z2VmA)
 
 
-[**How To Use an API with JavaScript **](https://rapidapi.com/blog/how-to-use-an-api-with-javascript/)
+[**How To Use an API with JavaScript**](https://rapidapi.com/blog/how-to-use-an-api-with-javascript/)
