@@ -87,7 +87,7 @@
         .then(function (data) {
           console.log(data);
           document.getElementById("profileImage").src = data["avatar_url"];
-          document.getElementById("FullName").src = data["name"];
+          document.getElementById("FullName").textContent = data["name"];
           document.getElementById("githubLink").href = data["html_url"];
           document.getElementById("mainContainer").hidden = false;
           document.getElementById("loading").hidden = true;
